@@ -9,7 +9,7 @@ void function(float success, float fail){
 }
 
 int main(){
-	double pi = 3.14159;
+	constexpr double pi = 3.14159;
 	std::cout << "pi = " << pi << std::endl;
 
 	std::cout << "pi with a precision of 0: " << std::fixed << std::setprecision(0) << pi << std::endl;
