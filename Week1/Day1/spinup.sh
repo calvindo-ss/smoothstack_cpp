@@ -4,4 +4,4 @@
 export docker_img="dockerdev"
 
 # mounts current working directory to /source_directory
-docker run -dit -v "$(pwd)":/source_directory $docker_img bash
+docker run -dit -v "$(pwd)":/home/calvin/source_directory:z -u $(whoami) $docker_img bash
