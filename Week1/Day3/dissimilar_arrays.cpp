@@ -24,7 +24,7 @@ int main(void){
     // print out array/string containing ints and floats
     std::cout << "This is a mixed array of ints and floats: " << std::endl;
     for(int k=0; k<string_arr.size(); k++){
-        std::cout << string_arr[k] << " ";
+        std::cout << string_arr[k] << ", ";
     }
     std::cout << std::endl << std::endl;
 
@@ -49,7 +49,7 @@ int main(void){
         // if no '.' found, converts string to int
         else{
             int num_int = std::stoi(st);
-            std::cout << num_int << " is an int!" << std::endl;
+            std::cout << num_int << "   is an int!" << std::endl;
 
             // assert that the mixed float value == the original float
             if(j%2==0){

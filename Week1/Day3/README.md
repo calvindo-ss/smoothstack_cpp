@@ -18,7 +18,7 @@ See array_vectors.cpp
 How would you store elements of dissimilar type in an array? Write a program to demonstrate 
 that you can store int and float in the same array without using struct, or any class type.
 
-A quick and dirty way to store both ints and floats in a single array would be to convert them into a single data type, in this case a string. 
+A quick and dirty way to store both ints and floats in a single array would be to convert them into a single data type, in my case a string. In order to get the correct data types back, I would have to the parse the strings into integers and floats.
 
 See dissimilar_arrays.cpp
 
@@ -26,6 +26,6 @@ See dissimilar_arrays.cpp
 In the above example, once you have created the "mixed" array, is it possible to recognize the type
 of each element automatically? If so, or if not, why? Show with a code example.
 
-Converting ints and floats into strings allows both data types to be stored in a single array/vector. The issue with this hack is that it is much more difficult to identify the types of each element (int or float). In order to identify types, I use '.' as an identifier for floats and assume everything else is an int. However, this assumes all numbers with '.' is a float, ignoring double types. 
+While I was able to create a mixed array, my implementation of converting ints and floats to strings does not have built-in ways to determine the type. Converting ints and floats into strings allows both data types to be stored in a single array/vector. The issue with this implementation is that it is much more difficult to identify the types of each element (int or float). In order to identify types, I use '.' as an identifier for floats and assume everything else is an int. However, this assumes all numbers with '.' is a float, ignoring double types. 
 
-See dissimilar_arrays.cpp
+See dissimilar_arrays.cpp for the code example
