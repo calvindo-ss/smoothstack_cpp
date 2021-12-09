@@ -2,4 +2,4 @@
 
 export CONTAINER=`docker ps | tail -1 | awk '{print $1}'`
 
-docker exec -it $CONTAINER bash
+docker exec -it $CONTAINER /bin/zsh
