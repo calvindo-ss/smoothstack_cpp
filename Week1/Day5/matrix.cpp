@@ -22,11 +22,9 @@ void print_mat(std::vector<std::vector<int>> matrix){
     int size_x = matrix.size();
     int size_y = matrix[0].size();
 
-    std::cout << "########################" << std::endl;
-
     for (int i = 0; i < size_x; i++){
         for (int j = 0; j < size_y; j++){
-            std::cout << matrix[i][j] << ", ";
+            std::cout << matrix[i][j] << "  ";
         }
         std::cout << std::endl;
     }
@@ -53,16 +51,22 @@ std::vector<std::vector<int>> mult_mat(std::vector<std::vector<int>> mult1, std:
 int main(void){
     srand (time(NULL));
 
+    constexpr int r1 = 3, c1 = 3;
+    constexpr int r2 = 3, c2 = 5;
+
     // generates 2 random matrices
-    std::vector<std::vector<int>> mat1 = generate_mat(3, 3);
-    std::vector<std::vector<int>> mat2 = generate_mat(3, 3);
+    std::vector<std::vector<int>> mat1 = generate_mat(r1, c1);
+    std::vector<std::vector<int>> mat2 = generate_mat(r2, c2);
     
     // multiplies the 2 matrices
     std::vector<std::vector<int>> result = mult_mat(mat1, mat2);
 
     // prints the matrices
+    std::cout << "### Matrix A ###" << std::endl;
     print_mat(mat1);
+    std::cout << std::endl << "### Matrix B ###" << std::endl;
     print_mat(mat2);
+    std::cout << std::endl << "### Matrix C = A x B ###" << std::endl;
     print_mat(result);
 }
 
