@@ -385,7 +385,6 @@ void Cli::newAccount(){
     // checks if accountNum alread exists
     if(checkIfAccountExists(accountNum) == true){
         std::cout << "Account already exists" << std::endl;
-        newAccount();
     }
     else{
         std::cout << "Enter new username: ";
