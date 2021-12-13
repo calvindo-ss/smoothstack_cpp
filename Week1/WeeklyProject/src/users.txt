@@ -1,0 +1,16 @@
+hello,world,Calvin,Do,123456789,123.23,20211211,C,1,123456
+thinmints,girlscouts,Grace,Lee,345672216,850.26,20200322,C,0,431256
+lampshade,lamplamp,Henry,Chach,567132458,666.66,20170812,C,0,654321
+foo,bar,Rachel,plant,456321789,999.99,20200614,C,0,753159
+disk,drive,Bob,Parsons,512367856,123.23,20210523,C,0,6541234
+camel,case,Bob,Parson,741852963,321.21,20210815,C,0,369852
+lap,top,Bobby,Parsons,147456369,852.52,20210422,C,0,321258
+speaker,phone,Amanda,Bines,215487369,0.00,20211211,S,0,123321
+black,table,Sponge,Bob,987654123,0.00,20211211,S,0,456654
+red,cup,Johnson,Cactus,258963369,0.00,20211211,C,0,987789
+green,tangerine,Mason,Harold,788999999,0.00,20211211,C,0,741474
+bigboy,doggie,James,Garfield,999999999,0.00,20211212,C,0,555555
+golden,gatebridge,Bobby,Parson,777777777,0,20211212,C,0,987852
+jacket,glasses,Squid,Ward,264574126,0,20211212,C,0,425368
+bluemouse,redkeyboard,Harold,Kumar,777777777,0,20211212,C,0,222222
+kjsdfh,asdfujb,asjhdvb,qefbqsd,333333333,0,20121211,C,0,213467
