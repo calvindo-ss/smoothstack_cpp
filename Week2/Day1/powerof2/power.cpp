@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 bool isPower(int a){
     // bitwise & operator returns 1 only if both bits are 1
@@ -24,4 +25,8 @@ int main(){
     else{
         std::cout << num << " is not a power of 2" << std::endl;
     }
+
+    assert(isPower(2) == true);
+    assert(isPower(16) == true);
+    assert(isPower(256) == true);
 }
