@@ -4,7 +4,7 @@
 #include <cassert>
 #include <iomanip>
 
-double calculate_float(int den){
+double calculate_float(int &den){
     for(long int n = 0; n < 1000; n++){
 
         long int lower = pow(2, 52);
@@ -53,9 +53,9 @@ int dTof(double num){
 
 
 int main(){
-    double fraction = 0.;
+    double fraction;
 
-    std::cout << "Enter a fraction: ";
+    std::cout << "Enter a fraction in decimal form: ";
     std::cin >> fraction;
 
     long int j = 0, n;
@@ -66,6 +66,6 @@ int main(){
     j = pow(2, n)/den;
 
     double f = j/pow(2, n);
-
+    std::cout << den << std::endl;
     std::cout << std::fixed << std::setprecision(50) << "J = " << j << ", N = " << n << " " << f << std::endl;
 }
