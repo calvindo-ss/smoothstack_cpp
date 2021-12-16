@@ -13,7 +13,7 @@ long fib(long num){
 long fib_inv(long num){
     double phi = (1 + sqrt(5)) / 2;
 
-    return log(num * sqrt(5) + 0.5) / log(phi);
+    return std::floor(log(num * sqrt(5) + 0.5) / log(phi)); // returns inverted binet's formula
 }
 
 int main(){
@@ -22,4 +22,5 @@ int main(){
     std::cout << "Largest index before overflow of int32: " << largest_fib << std::endl;
 
     assert(fib_inv(INT32_MAX) == 46);
+    assert(fib_inv(INT64_MAX) == 92);
 }

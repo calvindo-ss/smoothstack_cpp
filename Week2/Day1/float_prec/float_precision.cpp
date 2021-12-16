@@ -7,7 +7,7 @@
 double calculate_float(int &den){
     for(long int n = 0; n < 1000; n++){
 
-        long int lower = pow(2, 52);
+        long int lower = pow(2, 51);
         long int upper = pow(2, 53);
         long int num = (pow(2, n)/den);
 
@@ -66,6 +66,6 @@ int main(){
     j = pow(2, n)/den;
 
     double f = j/pow(2, n);
-    std::cout << den << std::endl;
-    std::cout << std::fixed << std::setprecision(50) << "J = " << j << ", N = " << n << " " << f << std::endl;
+    //std::cout << den << std::endl;
+    std::cout << std::fixed << std::setprecision(55) << "J = " << j << ", N = " << n << " " << f << std::endl;
 }

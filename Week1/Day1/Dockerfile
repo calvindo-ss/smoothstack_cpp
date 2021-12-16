@@ -1,7 +1,9 @@
 FROM centos:latest
 
-#RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
 RUN yum update -y
+#RUN yum makecache --refresh
+RUN yum -y install dnf
+RUN dnf -y --enablerepo=powertools install gtest-devel
 RUN yum -y install git
 RUN yum -y install gdb
 RUN yum -y install vim
@@ -21,6 +23,9 @@ RUN yum -y install curl
 #RUN yum -y install sudo
 RUN yum -y install zsh
 RUN yum -y install xterm
+RUN yum -y install cmake
+#RUN yum -y install gtest-devel
+#RUN yum -y install gtest
 RUN dnf -y group install "Development Tools"
 ENV HOME=/home/calvin
 RUN useradd -ms /bin/bash calvin

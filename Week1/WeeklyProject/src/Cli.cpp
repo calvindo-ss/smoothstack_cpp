@@ -8,9 +8,9 @@
 #include "User.h"
 
 // TODO:
-// input sanitization of incorrect types
+// input validation of incorrect types
 // make search by account name case insensitive
-// input sanitization in newAccount() function
+// input validation in newAccount() function
 // password encryption / not plain text
 
 User *currentUser;
@@ -432,8 +432,11 @@ void Cli::newAccount(){
 
         // username, password, fname, lname, ssn, balance, date, account type, admin, accountnum
         file.open("users.txt", std::ios::app); 
+
+        // writes the data into a new line in users.txt
         file << username << ',' << password << ',' << fname << ',' << lname << ',' << ssn << ',' << balance << ',' << dateOpened << ',' 
             << accountType << ',' << admin << ',' << accountNum << std::endl;
+        
         file.close();
 
         if(checkIfAccountExists(accountNum) == true){

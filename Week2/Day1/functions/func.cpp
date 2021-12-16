@@ -8,8 +8,6 @@ struct Foo{
     void myfunc(float f) const{
         std::cout << "I am constant" << std::endl;
     };
-
-
 };
 
 int main(){
@@ -20,7 +18,4 @@ int main(){
 
     const Foo bar1;
     bar1.myfunc(num);
-
-
-
 }
