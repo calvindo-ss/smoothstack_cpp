@@ -17,6 +17,6 @@ FetchContent_MakeAvailable(googletest)
 # Now simply link against gtest or gtest_main as needed. Eg
 #target_link_libraries(tests gtest_main)
 add_executable(tests tests.cpp)
-target_link_libraries(tests PRIVATE User Cli gtest_main)
+target_link_libraries(tests PRIVATE Cli users AccountData ProtoReadWrite ${PROTOBUF_LIBRARY} gtest_main)
 #target_link_libraries(tests gtest_main)
 add_test(NAME example_test COMMAND example)

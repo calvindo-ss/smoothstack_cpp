@@ -16,6 +16,6 @@ class Cli{
         void closeAccount();
 
     private:
-        void displayAccount(int accountNumber); // show account based on
+        void displayAccount(int accountNumber); // show account based on accountnum
         void displayAccount(std::string fname, std::string lname);
 };

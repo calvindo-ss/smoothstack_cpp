@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 
 #include "Cli.h"
-#include "User.h"
+#include "AccountData.h"
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
@@ -14,7 +14,7 @@ int main(int argc, char **argv){
 TEST(user_class, get_user_data_accountNum){
     int accountNum = 123456;
 
-    User *localUser = new User();
+    AccountData *localUser = new AccountData();
 
     // create file obj and opens users.txt
     std::fstream file;
@@ -56,7 +56,7 @@ TEST(user_class, get_user_data_accountNum){
 TEST(user_class, get_user_data_accountNum1){
     int accountNum = 431256;
 
-    User *localUser = new User();
+    AccountData *localUser = new AccountData();
 
     // create file obj and opens users.txt
     std::fstream file;
@@ -96,7 +96,7 @@ TEST(user_class, get_user_data_accountNum1){
 }
 
 TEST(user_class, set_arbitrary_user_data){
-    User *localUser = new User();
+    AccountData *localUser = new AccountData();
 
     std::vector<std::string> userData = {"foo", "bar", "Camel", "Case", "101010101", "10.01", "20211212", "C", "0", "321123"};
 

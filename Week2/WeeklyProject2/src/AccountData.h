@@ -1,13 +1,25 @@
+#pragma once
 #include <iostream>
 #include <ctime>
 #include <vector>
 
-class User{
+class AccountData{
     public:
-        User();
+        AccountData();
 
         // setter
         void setUserData(std::vector<std::string> &userData);
+
+        void setUsername(std::string);
+        void setPassword(std::string);
+        void setFName(std::string);
+        void setLName(std::string);
+        void setSSN(int);
+        void setBalance(double);
+        void setDateOpened(int);
+        void setAccountType(char);
+        void setAdmin(int);
+        void setAccountNum(int);
         
         // getter
         std::string getUsername();        
@@ -30,24 +42,4 @@ class User{
         char accountType; // checking 'c' or savings 's'
         int admin;
         int accountNum;
-
-        void setUsername(std::string);
-        void setPassword(std::string);
-        void setFName(std::string);
-        void setLName(std::string);
-        void setSSN(int);
-        void setBalance(double);
-        void setDateOpened(int);
-        void setAccountType(char);
-        void setAdmin(int);
-        void setAccountNum(int);
-};
-
-class Customer: public User{
-
-};
-
-class Admin: public User{
-    public:
-    
 };

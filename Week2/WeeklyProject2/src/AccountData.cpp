@@ -1,12 +1,15 @@
-#include "User.h"
-#include <vector>
+#include "AccountData.h"
+#include <users.pb.h>
 
-User::User(){
+#include <vector>
+#include <fstream>
+
+AccountData::AccountData(){
 
 }
 
 // setters
-void User::setUserData(std::vector<std::string> &userData){
+void AccountData::setUserData(std::vector<std::string> &userData){
     this->setUsername(userData[0]);
     this->setPassword(userData[1]);
     this->setFName(userData[2]);
@@ -19,72 +22,72 @@ void User::setUserData(std::vector<std::string> &userData){
     this->setAccountNum(std::stoi(userData[9]));
 }
 
-void User::setUsername(std::string username){
+void AccountData::setUsername(std::string username){
     this->username = username;
 }
 
-void User::setPassword(std::string password){
+void AccountData::setPassword(std::string password){
     this->password = password;
 }
 
-void User::setFName(std::string fname){
+void AccountData::setFName(std::string fname){
     this->fname = fname;
 }
 
-void User::setLName(std::string lname){
+void AccountData::setLName(std::string lname){
     this->lname = lname;
 }
 
-void User::setSSN(int ssn){
+void AccountData::setSSN(int ssn){
     this->ssn = ssn;
 }
 
-void User::setBalance(double balance){
+void AccountData::setBalance(double balance){
     this->balance = balance;
 }
 
-void User::setDateOpened(int dateOpened){
+void AccountData::setDateOpened(int dateOpened){
     this->dateOpened = dateOpened;
 }
 
-void User::setAccountType(char accountType){
+void AccountData::setAccountType(char accountType){
     this->accountType = accountType;
 }
 
-void User::setAdmin(int admin){
+void AccountData::setAdmin(int admin){
     this->admin = admin;
 }
 
-void User::setAccountNum(int accountNum){
+void AccountData::setAccountNum(int accountNum){
     this->accountNum = accountNum;
 }
 
 // getters
-std::string User::getUsername(){
+std::string AccountData::getUsername(){
     return this->username;
 }
 
-std::string User::getPassword(){
+std::string AccountData::getPassword(){
     return this->password;
 }
 
-std::string User::getFName(){
+std::string AccountData::getFName(){
     return this->fname;
 }
 
-std::string User::getLName(){
+std::string AccountData::getLName(){
     return this->lname;
 }
 
-int User::getSSN(){
+int AccountData::getSSN(){
     return this->ssn;
 }
 
-double User::getBalance(){
+double AccountData::getBalance(){
     return this->balance;
 }
 
-std::string User::getDateOpened(){
+std::string AccountData::getDateOpened(){
     std::string formattedDate = std::to_string(this->dateOpened);
     formattedDate.insert(4, 1, '-');
     formattedDate.insert(7, 1, '-');
@@ -92,14 +95,14 @@ std::string User::getDateOpened(){
     return formattedDate;
 }
 
-char User::getAccountType(){
+char AccountData::getAccountType(){
     return this->accountType;
 }
 
-int User::getAdmin(){
+int AccountData::getAdmin(){
     return this->admin;
 }
 
-int User::getAccountNum(){
+int AccountData::getAccountNum(){
     return this->accountNum;
 }
