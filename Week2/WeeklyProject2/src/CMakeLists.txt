@@ -11,10 +11,12 @@ add_library(users STATIC users.pb.cc users.pb.h)
 target_include_directories(users PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 #target_link_libraries(users PRIVATE ProtoReadWrite)
 
+add_library(Transaction STATIC Transaction.cpp Transaction.h)
+target_include_directories(Transaction PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_library(Cli STATIC Cli.cpp Cli.h)
 target_include_directories(Cli PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(Cli PRIVATE AccountData users AccountData ProtoReadWrite ${PROTOBUF_LIBRARY})
-target_link_libraries(Cli PRIVATE ProtoReadWrite)
+target_link_libraries(Cli PRIVATE Transaction AccountData users AccountData ProtoReadWrite ${PROTOBUF_LIBRARY})
 
 add_library(ProtoReadWrite STATIC ProtoReadWrite.cpp ProtoReadWrite.h)
 target_include_directories(ProtoReadWrite PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

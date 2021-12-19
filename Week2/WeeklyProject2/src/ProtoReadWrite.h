@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <users.pb.h>
 #include <AccountData.h>
@@ -9,10 +10,15 @@ class ProtoReadWrite{
         ProtoReadWrite(AccountData &a);
 
         bankcli::Customers read_proto();
-        //void read_proto(std::string &username, std::string &password);
 
         void write_proto();
+        void write_proto(bankcli::Account&, double&);
+
+        void show_all_accounts();
+        void show_account(int);
+        void show_account(std::string, std::string);
+        void write_data(bankcli::Account *account);
 
     private:
-        void write_data(bankcli::Account *account);
+        
 };

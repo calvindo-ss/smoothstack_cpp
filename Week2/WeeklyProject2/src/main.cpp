@@ -4,6 +4,7 @@
 
 int main(){
     Cli cli;
+    //cli.newAccount();
     cli.run();
 
     return 0;

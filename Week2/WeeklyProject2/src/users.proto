@@ -8,7 +8,7 @@ message Account {
     optional string password = 3;
     optional string fname = 4;
     optional string lname = 5;
-    optional int32 ssn = 6;
+    optional string ssn = 6;
     optional double balance = 7;
     optional string dateopened = 8;
     optional int32 accounttype = 9;

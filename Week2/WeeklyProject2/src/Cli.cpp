@@ -7,6 +7,7 @@
 #include "Cli.h"
 #include "AccountData.h"
 #include <ProtoReadWrite.h>
+#include <Transaction.h>
 
 // TODO:
 // input validation of incorrect types
@@ -14,33 +15,16 @@
 // input validation in newAccount() function
 // password encryption / not plain text
 
-// Helper function
-unsigned levenshtein_distance(const std::string s1, std::string s2) {
-
-	const std::size_t len1 = s1.size(), len2 = s2.size();
-	std::vector<std::vector<unsigned int>> d(len1 + 1, std::vector<unsigned int>(len2 + 1));
-
-	d[0][0] = 0;
-	for(unsigned int i = 1; i <= len1; ++i) d[i][0] = i;
-	for(unsigned int i = 1; i <= len2; ++i) d[0][i] = i;
-
-	for(unsigned int i = 1; i <= len1; ++i)
-		for(unsigned int j = 1; j <= len2; ++j) {
-            d[i][j] = std::min({ d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (s1[i - 1] == s2[j - 1] ? 0 : 1) });
-        }
-
-	return d[len1][len2];
-}
-
 AccountData *currentUser;
+bankcli::Account currentAccount;
 
 Cli::Cli(){
-    
+
 }
 
 void Cli::run(){
     currentUser = new AccountData();
-
+    
     if(login()){ // if login returns true, run program
         bool runProgram = true;
 
@@ -51,46 +35,46 @@ void Cli::run(){
 }
 
 bool Cli::login(){
-    std::string username, password;
+    for(int i = 0; i < 3; i++){
+        std::string username, password;
 
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    std::cout << "Enter password: ";
-    std::cin >> password;
+        std::cout << "Enter username: ";
+        std::cin >> username;
+        std::cout << "Enter password: ";
+        std::cin >> password;
 
-    if(checkIfAccountExists(username, password)){
-        std::cout << std::endl << "Login successful!" << std::endl;
-        return true;
+        if(checkIfAccountExists(username, password) == true){
+            std::cout << std::endl << "Login successful!" << std::endl;
+            return true;
+        }
+        else{
+            std::cout << "Incorrect username or password. Attempt " << i+1 << " of 3" << std::endl;
+        }
     }
-    else{
-        std::cout << "Login failed" << std::endl;
-        login();
-        return true;
-    }
+    std::cout << "Too many attempts" << std::endl;
     return false;
 }
 
 // for login only
 bool Cli::checkIfAccountExists(std::string enteredUsername, std::string enteredPassword){
-    
     ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
     bankcli::Customers customer = proto->read_proto();
 
     for(int i = 0; i < customer.account_size(); i++){
-		const bankcli::Account account = customer.account(i);
+		currentAccount = customer.account(i);
 
-		if(enteredUsername == account.username() && enteredPassword == account.password()){
+		if(enteredUsername == currentAccount.username() && enteredPassword == currentAccount.password()){
 
-            currentUser->setAccountNum(account.accountnum());
-            currentUser->setUsername(account.username());
-            currentUser->setPassword(account.password());
-            currentUser->setFName(account.fname());
-            currentUser->setLName(account.lname());
-            currentUser->setSSN(account.ssn());
-            currentUser->setBalance(account.balance());
-            currentUser->setDateOpened(std::stoi(account.dateopened()));
-            currentUser->setAccountType(account.accounttype());
-            currentUser->setAdmin(account.admin());
+            currentUser->setAccountNum(currentAccount.accountnum());
+            currentUser->setUsername(currentAccount.username());
+            currentUser->setPassword(currentAccount.password());
+            currentUser->setFName(currentAccount.fname());
+            currentUser->setLName(currentAccount.lname());
+            currentUser->setSSN(currentAccount.ssn());
+            currentUser->setBalance(currentAccount.balance());
+            currentUser->setDateOpened(std::stoi(currentAccount.dateopened()));
+            currentUser->setAccountType(currentAccount.accounttype());
+            currentUser->setAdmin(currentAccount.admin());
 
             delete proto;
             return true;
@@ -101,7 +85,6 @@ bool Cli::checkIfAccountExists(std::string enteredUsername, std::string enteredP
 }
 
 bool Cli::checkIfAccountExists(int accountNum){
-
     ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
     bankcli::Customers customer = proto->read_proto();
 
@@ -130,6 +113,7 @@ bool Cli::showMenu(){
         std::cout << "3. Search account by name" << std::endl;
         std::cout << "4. Create new account" << std::endl;
         std::cout << "5. Close an account" << std::endl;
+        std::cout << "6. Make a transaction" << std::endl;
         std::cout << "0. Close program" << std::endl << std::endl;
         std::cout << "Enter option: ";
         std::cin >> option;
@@ -143,13 +127,15 @@ bool Cli::showMenu(){
             return showMenu();
         }
 
+        ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
+
         switch(option){
             case 0:     // ends program if select 0
                 std::cout << "Goodbye" << std::endl;
                 return false;
             case 1:
                 std::cout << "Show all accounts selected " << std::endl << std::endl;
-                showAllAccounts();
+                proto->show_all_accounts();
                 break;
             case 2:
                 std::cout << "Search account by account number selected " << std::endl << std::endl;
@@ -167,6 +153,12 @@ bool Cli::showMenu(){
                 std::cout << "Close account selected " << std::endl << std::endl;
                 closeAccount();
                 break;
+            case 6:{
+                std::cout << "Make a transaction selected" << std::endl << std::endl;
+                Transaction transaction(*currentUser, currentAccount);
+                break;
+            }
+                
             default:
                 std::cout << "No option selected, please try again" << std::endl;
 
@@ -210,23 +202,10 @@ bool Cli::showMenu(){
     return true;
 }
 
-void Cli::showAllAccounts(){
-
-    ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
-    bankcli::Customers customer = proto->read_proto();
-
-    for(int i = 0; i < customer.account_size(); i++){
-		const bankcli::Account account = customer.account(i);
-
-        std::cout << "################################" << std::endl;
-		std::cout << "Account number: " << account.accountnum() << std::endl;
-		std::cout << "Customer name: " << account.fname() << " " << account.lname() << std::endl;
-		std::cout << "Date opened: " << account.dateopened() << std::endl;
-	}
-}
-
 void Cli::searchAccountNum(){
     int accountNum;
+    ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
+
     std::cout << "Enter account number to search for: ";
     std::cin >> accountNum;
 
@@ -236,7 +215,7 @@ void Cli::searchAccountNum(){
     }
 
     if(checkIfAccountExists(accountNum) == true){
-        displayAccount(accountNum);     // displays the account if matching account number found
+        proto->show_account(accountNum);     // displays the account if matching account number found
     }
     else{
         std::cout << "No matching account found with account number " << accountNum << std::endl << std::endl;
@@ -245,25 +224,8 @@ void Cli::searchAccountNum(){
     
 }
 
-void Cli::displayAccount(int accountNum){
-
-    ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
-    bankcli::Customers customer = proto->read_proto();
-
-    for(int i = 0; i < customer.account_size(); i++){
-		const bankcli::Account account = customer.account(i);
-
-		if(accountNum == account.accountnum()){
-            std::cout << std::endl << "################################" << std::endl;
-            std::cout << "Customer name: " << account.fname() << " " << account.lname() << std::endl;
-            std::cout << "SSN: " << account.ssn() << std::endl;
-            std::cout << "Date opened: " << account.dateopened() << std::endl;
-            std::cout << "################################" << std::endl;
-        }
-	}
-}
-
 void Cli::searchAccountName(){
+    ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
     std::string tmpFName, tmpLName;
 
     std::cout << "Enter first name for search:";
@@ -272,57 +234,8 @@ void Cli::searchAccountName(){
     std::cin >> tmpLName;
     std::cout << std::endl;
 
-    displayAccount(tmpFName, tmpLName);
-}
-
-void Cli::displayAccount(std::string localFName, std::string localLName){
-    std::vector<int> searchResults_accountnums;
-    std::vector<std::string> searchResults;
-
-    ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
-    bankcli::Customers customer = proto->read_proto();
-
-    for(int i = 0; i < customer.account_size(); i++){
-		const bankcli::Account account = customer.account(i);
-
-		if(levenshtein_distance(localFName, account.fname()) < 4 && levenshtein_distance(localLName, account.lname()) < 4){
-            if(localFName.compare(account.fname()) == 0 && localLName.compare(account.lname()) == 0){
-
-                searchResults.insert(searchResults.begin(), account.fname()+" "+account.lname());
-                searchResults_accountnums.insert(searchResults_accountnums.begin(), account.accountnum());
-            }
-            else{
-                searchResults.push_back(account.fname()+" "+account.lname());
-                searchResults_accountnums.push_back(account.accountnum());
-
-            }
-        }
-	}
-
-    if(searchResults.size() != 0){
-        for(int i=0; i<searchResults.size(); i++){
-        std::cout << i+1 << ". " << searchResults[i] << std::endl;
-        }
-
-        std::cout << "0. Cancel search" << std::endl << std::endl;
-        int option;
-        std::cout << "Select which user to view: ";
-        std::cin >> option;
-
-        // selects customer based on user input
-        for(int j = 0; j < searchResults.size(); j++){
-            if(option == 0){
-                return;
-            }
-            if(j+1 == option){ // if option==1
-                displayAccount(searchResults_accountnums[j]);
-                return;
-            }
-        }
-    }
-    
-    std::cout << "No matching account found for " << localFName << " " << localLName << std::endl;
-    searchAccountName();
+    proto->show_account(tmpFName, tmpLName);
+    //displayAccount(tmpFName, tmpLName);
 }
 
 void Cli::newAccount(){    
@@ -418,7 +331,7 @@ void Cli::closeAccount(){
     if(localAccountNum1 == localAccountNum2 && checkIfAccountExists(localAccountNum1) == true){
 
         AccountData *localUser = new AccountData();
-        ProtoReadWrite *proto = new ProtoReadWrite(*localUser);
+        ProtoReadWrite *proto = new ProtoReadWrite(*currentUser);
         bankcli::Customers customer = proto->read_proto();
 
         for(int i = 0; i < customer.account_size(); i++){
