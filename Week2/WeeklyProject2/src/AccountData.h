@@ -8,7 +8,7 @@ class AccountData{
         AccountData();
 
         // setter
-        void setUserData(std::vector<std::string> &userData);
+        //void setUserData(std::vector<std::string> &userData);
 
         void setUsername(std::string);
         void setPassword(std::string);

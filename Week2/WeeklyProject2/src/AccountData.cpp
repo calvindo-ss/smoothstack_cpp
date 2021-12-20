@@ -9,19 +9,6 @@ AccountData::AccountData(){
 }
 
 // setters
-void AccountData::setUserData(std::vector<std::string> &userData){
-    this->setUsername(userData[0]);
-    this->setPassword(userData[1]);
-    this->setFName(userData[2]);
-    this->setLName(userData[3]);
-    this->setSSN(std::stoi(userData[4]));
-    this->setBalance(std::stod(userData[5]));
-    this->setDateOpened(std::stoi(userData[6]));
-    this->setAccountType(userData[7][0]);
-    this->setAdmin(std::stoi(userData[8]));
-    this->setAccountNum(std::stoi(userData[9]));
-}
-
 void AccountData::setUsername(std::string username){
     this->username = username;
 }

@@ -7,7 +7,7 @@
 4. "search name" function only lists exact match when matching case
 5. SSN length is not verified (<9)
 6. "Date opened" is not verified as true date
-7. 
+7. Error logging does not have elevated levels (info, warning, error)
 
 
 ## Admin Credentials
