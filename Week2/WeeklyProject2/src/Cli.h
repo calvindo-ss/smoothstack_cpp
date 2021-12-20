@@ -1,19 +1,16 @@
 #include <iostream>
+#include <ProtoReadWrite.h>
 
 class Cli{
+    ProtoReadWrite &prw;
     public:
-        Cli();
+        Cli(ProtoReadWrite protoreadwrite):
+        prw(protoreadwrite){}
+       
         void run();
-        bool login();
-        bool checkIfAccountExists(std::string username, std::string password);
-        bool checkIfAccountExists(int accountNum);
-        bool showMenu();
-
-        void searchAccountNum(); //show account based on account number
-        void searchAccountName(); // show account based on name
-        void newAccount();
-        void closeAccount();
-
+        
     private:
-        void displayAccount(std::string fname, std::string lname);
+        bool login();
+        bool showMenu();
+        void closeAccount();
 };

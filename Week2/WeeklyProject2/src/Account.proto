@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bankcli;
+package pb;
 
 message Account {
     optional int32 accountNum = 1;
@@ -13,8 +13,15 @@ message Account {
     optional string dateopened = 8;
     optional int32 accounttype = 9;
     optional int32 admin = 10; 
+
+    message Transaction{
+        optional double amount_sent = 1;
+        optional double amount_recv = 2;
+        optional int32 recipient_accountnum = 3;
+        optional string dt = 4;
+    }   
 }
 
-message Customers{
+message Accounts{
     repeated Account account = 1;
 }

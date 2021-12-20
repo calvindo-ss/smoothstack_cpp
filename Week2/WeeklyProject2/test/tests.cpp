@@ -3,41 +3,28 @@
 
 #include <gtest/gtest.h>
 
-#include "Cli.h"
 #include "AccountData.h"
+#include <ProtoReadWrite.h>
+#include <Transaction.h>
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
 
-TEST(user_class, get_user_data_accountNum){
-    int accountNum = 123456;
-
+TEST(AccountData, AccountData_set_and_get){
     AccountData *localUser = new AccountData();
 
-    // create file obj and opens users.txt
-    std::fstream file;
-    std::string tmp, line;
-    char delimiter = ',';
-
-    file.open("../src/users.txt");              // username, password, fname, lname, ssn, balance, date, account type, admin, accountnum
-
-    while(getline(file, line)){                 // reads each line in file
-        std::stringstream ss(line);
-        std::vector<std::string> userData;
-
-        while(getline(ss, tmp, delimiter)){     // reads a single line and pushes to userData
-            userData.push_back(tmp); 
-        }
-            
-        localUser->setUserData(userData);       // sets userData to localUser obj
-
-        if(localUser->getAccountNum() == accountNum){
-            break;
-        }
-    }
-    file.close();
+    localUser->setAccountNum(123456);
+    localUser->setUsername("hello");
+    localUser->setPassword("world");
+    localUser->setFName("Calvin");
+    localUser->setLName("Do");
+    localUser->setSSN(123456789);
+    localUser->setBalance(123.23);
+    localUser->setDateOpened(20211211);
+    localUser->setAccountType('C');
+    localUser->setAdmin(1);    
 
     ASSERT_EQ(localUser->getUsername(), "hello");
     ASSERT_EQ(localUser->getPassword(), "world");
@@ -53,94 +40,59 @@ TEST(user_class, get_user_data_accountNum){
     delete localUser;
 }
 
-TEST(user_class, get_user_data_accountNum1){
-    int accountNum = 431256;
+TEST(ProtoReadWrite, ProtoReadWrite_check_account_exists_u_p){
+    std::string protofile = "Account.data";
+    // init protobuf
+    auto accounts = pb::Accounts();
 
-    AccountData *localUser = new AccountData();
+    ProtoReadWrite prw(protofile, accounts);
+    std::string u1 = "admin", p1 = "password";
+    std::string u2 = "tacobell", p2 = "fastfood";
 
-    // create file obj and opens users.txt
-    std::fstream file;
-    std::string tmp, line;
-    char delimiter = ',';
-
-    file.open("../src/users.txt");              // username, password, fname, lname, ssn, balance, date, account type, admin, accountnum
-
-    while(getline(file, line)){                 // reads each line in file
-        std::stringstream ss(line);
-        std::vector<std::string> userData;
-
-        while(getline(ss, tmp, delimiter)){     // reads a single line and pushes to userData
-            userData.push_back(tmp); 
-        }
-            
-        localUser->setUserData(userData);       // sets userData to localUser obj
-
-        if(localUser->getAccountNum() == accountNum){
-            break;
-        }
-    }
-    file.close();
-
-    ASSERT_EQ(localUser->getUsername(), "thinmints");
-    ASSERT_EQ(localUser->getPassword(), "girlscouts");
-    ASSERT_EQ(localUser->getFName(), "Grace");
-    ASSERT_EQ(localUser->getLName(), "Lee");
-    ASSERT_EQ(localUser->getSSN(), 345672216);
-    ASSERT_EQ(localUser->getBalance(), 850.26);
-    ASSERT_EQ(localUser->getDateOpened(), "2020-03-22");
-    ASSERT_EQ(localUser->getAccountType(), 'C');
-    ASSERT_EQ(localUser->getAdmin(), 0);
-    ASSERT_EQ(localUser->getAccountNum(), 431256);
-
-    delete localUser;
+    ASSERT_TRUE(prw.check_account_exists(u1, p1));
+    ASSERT_FALSE(prw.check_account_exists(u2, p2));
 }
 
-TEST(user_class, set_arbitrary_user_data){
-    AccountData *localUser = new AccountData();
+TEST(ProtoReadWrite, ProtoReadWrite_check_account_exists_num){
+    std::string protofile = "Account.data";
+    // init protobuf
+    auto accounts = pb::Accounts();
 
-    std::vector<std::string> userData = {"foo", "bar", "Camel", "Case", "101010101", "10.01", "20211212", "C", "0", "321123"};
+    ProtoReadWrite prw(protofile, accounts);
 
-    localUser->setUserData(userData);
+    int a = 123456, b = 111111, c = 222222;
+    int d = 654123, e = 852147, f = 963456;
 
-    ASSERT_EQ(localUser->getUsername(), "foo");
-    ASSERT_EQ(localUser->getPassword(), "bar");
-    ASSERT_EQ(localUser->getFName(), "Camel");
-    ASSERT_EQ(localUser->getLName(), "Case");
-    ASSERT_EQ(localUser->getSSN(), 101010101);
-    ASSERT_EQ(localUser->getBalance(), 10.01);
-    ASSERT_EQ(localUser->getDateOpened(), "2021-12-12");
-    ASSERT_EQ(localUser->getAccountType(), 'C');
-    ASSERT_EQ(localUser->getAdmin(), 0);
-    ASSERT_EQ(localUser->getAccountNum(), 321123);
+    ASSERT_TRUE(prw.check_account_exists(a));
+    ASSERT_TRUE(prw.check_account_exists(b));
+    ASSERT_TRUE(prw.check_account_exists(c));
 
-    delete localUser;
+
+    ASSERT_FALSE(prw.check_account_exists(d));
+    ASSERT_FALSE(prw.check_account_exists(e));
+    ASSERT_FALSE(prw.check_account_exists(f));
 }
 
-// limitation of this test is that it requires User object to run
-/*
-TEST(cli_class, checkIfAccountExists_user_pass){
-    Cli cli;
+TEST(Transaction, Transaction_check_balance){
+    std::string protofile = "Account.data";
+    // init protobuf
+    auto accounts = pb::Accounts();
 
-    ASSERT_TRUE(cli.checkIfAccountExists("foo", "bar"));
-    ASSERT_TRUE(cli.checkIfAccountExists("camel", "case"));
-    ASSERT_TRUE(cli.checkIfAccountExists("foo", "bar"));
-    ASSERT_TRUE(cli.checkIfAccountExists("lampshade", "lamplamp"));
-    ASSERT_TRUE(cli.checkIfAccountExists("disk", "drive"));
+    ProtoReadWrite prw(protofile, accounts);
+    AccountData accountdata;
 
-    ASSERT_FALSE(cli.checkIfAccountExists("hello", "world!"));
-    ASSERT_FALSE(cli.checkIfAccountExists("thiss", "isssss"));
-    ASSERT_FALSE(cli.checkIfAccountExists("aaaaaa", "testt"));
-}
-*/
+    Transaction transaction(prw, 125.25, accountdata);
 
-TEST(cli_class, checkIfAccountExists_accountnum){
-    Cli cli;
+    double a = 100.00, b = 10.00, c = 50.00;
+    double d = 125.25, e = 150.23, f = 125.26;
 
-    ASSERT_TRUE(cli.checkIfAccountExists(123456));
-    ASSERT_TRUE(cli.checkIfAccountExists(431256));
-    ASSERT_TRUE(cli.checkIfAccountExists(654321));
-    ASSERT_TRUE(cli.checkIfAccountExists(753159));
-    ASSERT_TRUE(cli.checkIfAccountExists(123321));
+    ASSERT_TRUE(transaction.check_balance(a));
+    ASSERT_TRUE(transaction.check_balance(b));
+    ASSERT_TRUE(transaction.check_balance(c));
 
-    ASSERT_FALSE(cli.checkIfAccountExists(000000));
+    ASSERT_FALSE(transaction.check_balance(d));
+    ASSERT_FALSE(transaction.check_balance(e));
+    ASSERT_FALSE(transaction.check_balance(f));
+    
+
 }

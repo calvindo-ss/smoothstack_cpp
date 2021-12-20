@@ -1,5 +1,20 @@
 # Week 2 Assignment: Implement a command line banking console for admin.
 
+## Known issues
+1. Currently unable to delete accounts
+2. Sha256 hashing has been implemented but not aes256 for passwords
+3. SSN are not obfuscated, they are stored in plaintext
+4. "search name" function only lists exact match when matching case
+5. SSN length is not verified (<9)
+6. "Date opened" is not verified as true date
+7. 
+
+
+## Admin Credentials
+Username: admin
+
+Password: password
+
 ## Introduction
 
 This is an extension to last week's project with the following additions:

@@ -4,18 +4,19 @@
 #include <ProtoReadWrite.h>
 
 class Transaction{
+    ProtoReadWrite &prw;
+    double balance;
+    AccountData &accountdata;
+
     public:
-        Transaction(AccountData &data, bankcli::Account &account);
-        
+        Transaction(ProtoReadWrite protoreadwrite, double lbalance, AccountData &laccountdata):
+        prw(protoreadwrite), balance(lbalance), accountdata(laccountdata){};
+
+        void run();
+        bool check_balance(double &amnt);
 
     private:
         void debit(); // deposit cash
         void credit(); // withdraw cash
-
-        bool check_balance(double &amnt);
         void update_balance();
-
-        AccountData *data;
-        bankcli::Account account;
-        double balance;
 };

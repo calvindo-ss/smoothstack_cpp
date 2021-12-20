@@ -3,11 +3,7 @@
 #include <Transaction.h>
 #include <ProtoReadWrite.h>
 
-Transaction::Transaction(AccountData &a, bankcli::Account &b){
-    data = &a;
-    account = b;
-    balance = data->getBalance();
-
+void Transaction::run(){
     int choice;
 
     std::cout << "1. Show balance" << std::endl;    
@@ -19,7 +15,7 @@ Transaction::Transaction(AccountData &a, bankcli::Account &b){
 
     switch(choice){
         case 1:
-            std::cout << balance << std::endl;
+            std::cout << std::endl << "You have a balance of $" << balance << std::endl;
             break;
         case 2:
             debit();
@@ -33,30 +29,41 @@ Transaction::Transaction(AccountData &a, bankcli::Account &b){
 }
 
 void Transaction::debit(){
+    int accountnum;
     double amnt;
 
+    std::cout << "Enter your account number:";
+    std::cin >> accountnum;
     std::cout << "Enter amount to deposit into accout: ";
     std::cin >> amnt;
 
     balance += amnt;
 
-    update_balance();
+    prw.write_data_transaction(amnt, accountnum);
 
+    update_balance();
 }
 
 void Transaction::credit(){
+    int accountnum;
     double amnt;
 
+    std::cout << "Enter your account number:";
+    std::cin >> accountnum;
     std::cout << "Enter amount to withdraw from accout: ";
     std::cin >> amnt;
 
     if(check_balance(amnt)){
         balance -= amnt;
+
+        prw.write_data_transaction(amnt = -amnt, accountnum);
+
         std::cout << "Withdrawl successful" << std::endl;
     }
     else{
         std::cout << "Not enough funds to withdraw" << std::endl;
     }
+
     update_balance();
 }
 
@@ -69,9 +76,5 @@ bool Transaction::check_balance(double &a){
 }
 
 void Transaction::update_balance(){
-
-    ProtoReadWrite *proto = new ProtoReadWrite(*data);
-    data->setBalance(balance);
-
-    proto->write_proto(account, balance);
+    accountdata.setBalance(balance);
 }

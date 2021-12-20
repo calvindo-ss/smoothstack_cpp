@@ -15,10 +15,6 @@ include_directories(${PROTOBUF_INCLUDE_DIR})
 add_subdirectory(src)
 add_subdirectory(test)
 
-# copies users.txt to build/src
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/users.csv
-     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/src)
-
-# copies users.txt to build/src
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/users.csv
-     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test)
+# copies Account.data to build/src
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Account.data
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

@@ -1,24 +1,41 @@
 #pragma once
 #include <iostream>
-#include <users.pb.h>
+#include <Account.pb.h>
 #include <AccountData.h>
+#include <Logging.h>
 
 class ProtoReadWrite{
-    AccountData accountdata;
-
     public:
-        ProtoReadWrite(AccountData &a);
+        pb::Accounts db;
+        std::string protodata;
+        Logger logger;
 
-        bankcli::Customers read_proto();
+        ProtoReadWrite(std::string &protodata, pb::Accounts &db):
+        protodata(protodata), db(db) {};
 
+        bool check_account_exists(std::string&, std::string&);
+        bool check_account_exists(int &accountnum);
+
+        
+        void read_proto();
         void write_proto();
-        void write_proto(bankcli::Account&, double&);
+        void write_proto(pb::Account&, double&);
 
+        
         void show_all_accounts();
-        void show_account(int);
-        void show_account(std::string, std::string);
-        void write_data(bankcli::Account *account);
+        void show_account_num(int);
+        void show_account_num();
+        void show_account_name();
 
+        void new_account();
+
+        void write_data(pb::Account&, AccountData&);
+        void write_data_transaction(double&, int&);
+
+        AccountData get_account(std::string&, std::string&);
+        
+        void close_account();
     private:
+        pb::Account *laccount;
         
 };
