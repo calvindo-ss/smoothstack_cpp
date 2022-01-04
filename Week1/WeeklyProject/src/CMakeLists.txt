@@ -9,4 +9,4 @@ target_link_libraries(Cli PRIVATE User)
 
 # The main program
 add_executable(main main.cpp)
-target_link_libraries(main PRIVATE User Cli)
+target_link_libraries(main PRIVATE Cli)

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCli.a  CMakeFiles/Cli.dir/Cli.cpp.o
+/usr/bin/ranlib libCli.a

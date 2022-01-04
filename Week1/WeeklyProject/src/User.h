@@ -7,7 +7,7 @@ class User{
         User();
 
         // setter
-        void setUserData(std::vector<std::string> userData);
+        void setUserData(std::vector<std::string> &userData);
         
         // getter
         std::string getUsername();        

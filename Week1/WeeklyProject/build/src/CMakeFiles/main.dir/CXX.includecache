@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/calvin/MyProjects/smoothstack/Week1/WeeklyProject/src/Cli.h
+iostream
+-
+
+/home/calvin/MyProjects/smoothstack/Week1/WeeklyProject/src/main.cpp
+iostream
+-
+Cli.h
+/home/calvin/MyProjects/smoothstack/Week1/WeeklyProject/src/Cli.h
+

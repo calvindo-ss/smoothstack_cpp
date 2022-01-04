@@ -6,7 +6,7 @@ User::User(){
 }
 
 // setters
-void User::setUserData(std::vector<std::string> userData){
+void User::setUserData(std::vector<std::string> &userData){
     this->setUsername(userData[0]);
     this->setPassword(userData[1]);
     this->setFName(userData[2]);
