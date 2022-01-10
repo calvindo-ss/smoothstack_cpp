@@ -39,6 +39,10 @@ Ellipse& Ellipse::operator = (const Ellipse& other){
 
 // move assignment operator
 Ellipse& Ellipse::operator = (Ellipse&& other){
+    if(this == &other){
+        return *this;
+    }
+
     x = other.x;
     y = other.y;
 
@@ -101,6 +105,10 @@ Circle& Circle::operator = (const Circle& other){
 
 // move assignment operator
 Circle& Circle::operator = (Circle&& other){
+    if(this == &other){
+        return *this;
+    }
+
     x = other.x;
     y = other.y;
 
