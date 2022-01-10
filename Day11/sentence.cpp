@@ -18,7 +18,7 @@ Sentence::Sentence(const Sentence &copy){   // copy constructor
     std::cout << "Copy constructor has been called" << std::endl;
 
     sentence = new char[strlen(copy.sentence) + 1];
-    strcpy(sentence, copy.sentence);
+    strcpy(sentence, copy.sentence);             
 }
 
 Sentence &Sentence::operator = (const Sentence &copy){  // copy assignment operator

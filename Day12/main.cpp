@@ -34,7 +34,7 @@ int main(void){
     ms = ms3;
     std::cout << ms.get_string() << std::endl << std::endl;
 
-    //assert(ms.get_string() == ms3.get_string());
+    //assert(ms.mystring == ms3.mystring);
 
     // move assignment operator example
     char c_string[] = "foo bar";
@@ -50,7 +50,7 @@ int main(void){
 
     assert((ms+ms).mystring = "foo barfoo bar");
 
-    // + operator overload
+    // * operator overload
     ms.mystring = c_string;
     std::cout << (ms*5).get_string() << std::endl << std::endl;
     

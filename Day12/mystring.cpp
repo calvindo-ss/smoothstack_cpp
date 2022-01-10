@@ -21,6 +21,7 @@ MyString::MyString(const MyString& ms){
     //mystring = tempchar;
 
     mystring = new char[strlen(ms.mystring) + 1];
+    mystring[strlen(ms.mystring)] = '\0';
     mystring = ms.mystring;
 }
 
@@ -38,7 +39,7 @@ MyString &MyString::operator = (const MyString &ms){
     
     mystring = new char[strlen(ms.mystring) + 1];
     strcpy(mystring, ms.mystring);
-    //mystring[strlen(ms.mystring)] = '\0';
+    mystring[strlen(ms.mystring)] = '\0';
 
     return *this;
 }
@@ -74,6 +75,7 @@ MyString& MyString::operator * (const int& num){
     int len = strlen(mystring)*num;
     char* temp = mystring;
     mystring = new char[len + 1];
+    mystring[len] = '\0';
 
 
     strcpy(mystring, temp); // copy first element
