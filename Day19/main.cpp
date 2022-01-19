@@ -134,12 +134,32 @@ class Simulation{
         double sim_initial_mass; // initial mass
         double sim_k; // k
         bool verbose = false; // default false
+        bool write = false; // default false
+
+        void write_data(std::vector<Body>& body, int& numBody, std::vector<int>& interactions){
+            std::string filename = std::to_string(numBody)+"_bodies.json";
+            std::ofstream ofs(filename);
+
+            for(int i = 0; i < body.size(); i++){
+                nlohmann::ordered_json j = {
+                    
+                    {"N", body[i].ind},
+                    {"Interactions/s", interactions[i]}
+                };
+                ofs << j << std::endl;
+            }
+            ofs.close();
+        }
 
     public:
         Simulation(double local_initial_mass, double local_k): sim_initial_mass(local_initial_mass), sim_k(local_k){}
 
         void set_verbose(bool flag){
             verbose = flag;
+        }
+
+        void set_write(bool flag){
+            write = flag;
         }
 
         void run(){
@@ -155,7 +175,7 @@ class Simulation{
 
                 std::vector<Body> body_v;
                 std::vector<int> interactions_v;
-                
+
                 // loop through timestep(k)
                 for(int t_step = 0; t_step < k; t_step++){
                     if(verbose){
@@ -173,10 +193,13 @@ class Simulation{
                                         "), Acc (" << b.acceleration.x << ", " << b.acceleration.y << ")" << std::endl;
                             }(body[bod]);
                         }
-                        // push to body vector
-                        body_v.push_back(body[bod]);
-                        interactions_v.push_back(k * N * N / timestep);
-                        
+
+                        if(write){
+                            // push to body vector
+                            body_v.push_back(body[bod]);
+                            interactions_v.push_back(k * N * N / timestep);
+                        }
+                         
                         // loop through other bodies to update forceVector against all bodies
                         for(int other_bodies = 0; other_bodies < N; other_bodies++){
                             body[bod].forceVector[other_bodies] = [](double mass1, double mass2, R r1, R r2){ // updates forceVector
@@ -237,33 +260,22 @@ class Simulation{
                         }();
                     }
                 }
-                // write body data to json
-                write_data(body_v, N, interactions_v);
+
+                if(write){
+                    // write body data to json
+                    write_data(body_v, N, interactions_v);
+                }
 
                 std::cout << "Interactions/sec: " << [] {return k * N * N / timestep;}() << std::endl;
 
                 delete [] body;
             }
         }
-
-        void write_data(std::vector<Body>& body, int& numBody, std::vector<int>& interactions){
-            std::string filename = std::to_string(numBody)+"_bodies.json";
-            std::ofstream ofs(filename);
-
-            for(int i = 0; i < body.size(); i++){
-                nlohmann::ordered_json j = {
-                    
-                    {"N", body[i].ind},
-                    {"Interactions/s", interactions[i]}
-                };
-                ofs << j << std::endl;
-            }
-            ofs.close();
-        }
 };
 
 int main(void){
     Simulation s(initial_mass, k);
     s.set_verbose(false); // set to false to turn off console printing
+    s.set_write(true);
     s.run();
 }
