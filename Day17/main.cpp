@@ -65,7 +65,7 @@ class Account{
         // move constructor
         Account(Account&& other){
             amt = other.amt;
-            other.amt = 0;  // this may be an issue later
+            other.amt = 0;
         }
 
         // copy assignment operator
