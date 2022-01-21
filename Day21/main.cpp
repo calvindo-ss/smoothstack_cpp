@@ -149,10 +149,6 @@ private:
     double sim_k; // k
     bool write = true; // default false
 
-    void write_data(int N, double& interactions, int M){
-        j[std::to_string(M)][std::to_string(N)] = interactions;
-    }
-
 public:
     Simulation(double local_initial_mass, double local_k): sim_initial_mass(local_initial_mass), sim_k(local_k){}
 
@@ -253,8 +249,7 @@ public:
         if(write){
             std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
             double time = std::chrono::duration<double> (end - begin).count();
-            double iter = k * N * N / time;
-            write_data(N, iter, M);
+            j[std::to_string(M)][std::to_string(N)] = k * N * N / time;
         }
 
         delete [] body;
