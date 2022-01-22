@@ -243,31 +243,39 @@ public:
             }
         }
 
-        //std::this_thread::sleep_for(std::chrono::duration<double> (timestep));
-
         // write body data to json object
         if(write){
             std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
             double time = std::chrono::duration<double> (end - begin).count();
-            j[std::to_string(M)][std::to_string(N)] = k * N * N / time;
+            j[std::to_string(M)][std::to_string(N)]["Interactions/s"] = k * N * N / time;
+            j[std::to_string(M)][std::to_string(N)]["Elapsed_time"] = time;
+            j[std::to_string(M)][std::to_string(N)]["Total_number_of_calculations"] = k * N * N;
         }
 
         delete [] body;
+
+        //std::this_thread::sleep_for(std::chrono::duration<double>(timestep));
     }
 };
 
 int main(void){
-    //int numBodies[2] = {10, 20}; // use for testing custom number of bodies
+    //int numBodies[] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000}; // use for testing custom number of bodies
     int numBodies[] = {10, 20, 50, 100, 200, 500, 1000, 2000};
     int numThreads = 8;
-
-    for(int nt = 0; nt < numThreads; nt++){
+    
+    // iterate through all threads
+    for(int nt = 1; nt < numThreads+1; nt++){
         std::vector<std::thread> threads;
         Simulation s(initial_mass, k);
         
         for(int nb = 0; nb < sizeof(numBodies)/sizeof(numBodies[0]); nb++){
+            if(threads.size() == nt){               // if number of threads hits max threads,
+                threads.front().join();             // join first thread
+                threads.erase(threads.begin());     // delete first element in threads vec
+            }
+
             std::thread t(&Simulation::run, &s, numBodies[nb], nt);
-            threads.push_back(std::move(t));
+            threads.push_back(std::move(t));        
         }
 
         for (auto& t: threads){

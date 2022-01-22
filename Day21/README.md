@@ -2,9 +2,9 @@
 
 ## Analysis
 
-Increasing the number of cores seems to increase performance only from 1 to 2 cores. Any extra cores seems to have a plateau in performance. I suspect this is due to the lower end of "int numBodies[] = {10, 20, 50, 100, 200, 500, 1000, 2000};" being easy to calculate. Even with a single core, bodies from 10-500 are easily calculated with 1-2 seconds, whereas 1000 and 2000 cores can take several minutes. Within seconds of running, all extra cores are reduced down to 2 and then 1 when it is calculating 1000 and 2000 bodies. Having extra theads would benfit more if all the body calculations were 1000+, where it can really take advantage of the extra cores and power.
+Increasing the number of cores seems to increase performance at 3 cores at only low body numbers. Any extra cores after 3 seems to have a plateau in performance. I suspect this is due to the lower end of "int numBodies[] = {10, 20, 50, 100, 200, 500, 1000, 2000};" being easy to calculate. Even with a single core, bodies from 10-500 are easily calculated with 1-2 seconds, whereas 1000 and 2000 cores can take several minutes. Within seconds of running, all extra cores are reduced down to 2 and then 1 when it is calculating 1000 and 2000 bodies. Having extra theads would benfit more if all the body calculations were 1000+, where it can really take advantage of the extra cores and power.
 
-Introducing sleeping seems to reduce performance by almost half in low bodies simulations. However, with high body simulations, performance is only a little less than the simulation without sleeping.
+Introducing sleeping does not seem to improve nor decrease performance except for 3 threads. At 3 threads with sleeping, seems to reduce the iteration count by approximately half. However, 4+ threads has the same performance without sleeping.
 
 ## Multi-threaded N-body problem
 

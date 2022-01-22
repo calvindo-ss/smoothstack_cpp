@@ -1,82 +1,338 @@
 {
-    "0": {
-        "10": 3748590.998358492,
-        "20": 4419423.632028182,
-        "50": 3706133.4997318094,
-        "100": 5384541.5294153765,
-        "200": 5989305.83389877,
-        "500": 6061634.967668679,
-        "1000": 6866273.410785696,
-        "2000": 7228649.029794262
-    },
     "1": {
-        "10": 5212946.247747355,
-        "20": 4745751.129014193,
-        "50": 4753564.7457384765,
-        "100": 4471619.009761044,
-        "200": 4978107.09394324,
-        "500": 6389439.738462341,
-        "1000": 6864097.238519153,
-        "2000": 6974572.669228083
+        "10": {
+            "Interactions/s": 9452296.151781192,
+            "Elapsed_time": 0.001057944,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 9390863.95713634,
+            "Elapsed_time": 0.004259459,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 9095938.317895403,
+            "Elapsed_time": 0.027484795,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 9127299.63455205,
+            "Elapsed_time": 0.10956143,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 9176186.96255202,
+            "Elapsed_time": 0.435910909,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 9435487.419898055,
+            "Elapsed_time": 2.649571653,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 8627941.311913533,
+            "Elapsed_time": 11.590250372,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 8139749.476858098,
+            "Elapsed_time": 49.14156156,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "2": {
-        "10": 5000230.010580487,
-        "20": 4354839.2715921635,
-        "50": 4830277.290955598,
-        "100": 4423443.390049869,
-        "200": 5684585.832246474,
-        "500": 6361927.635470321,
-        "1000": 6680287.481581076,
-        "2000": 6980765.446931574
+        "10": {
+            "Interactions/s": 8888233.134799832,
+            "Elapsed_time": 0.001125083,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 7705470.710831599,
+            "Elapsed_time": 0.005191117,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 7670212.524100957,
+            "Elapsed_time": 0.032593621,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 7734724.684485884,
+            "Elapsed_time": 0.129287084,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 7509245.979696603,
+            "Elapsed_time": 0.532676651,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 6951282.364910365,
+            "Elapsed_time": 3.596458709,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7578849.598835995,
+            "Elapsed_time": 13.194614657,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7831523.94041444,
+            "Elapsed_time": 51.075627559,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "3": {
-        "10": 5831107.793858677,
-        "20": 4686390.826483685,
-        "50": 4488332.275044427,
-        "100": 4407782.3911685245,
-        "200": 5636135.287830074,
-        "500": 6500772.400063996,
-        "1000": 6761386.333715204,
-        "2000": 7041257.737160136
+        "10": {
+            "Interactions/s": 9042989.467630167,
+            "Elapsed_time": 0.001105829,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 7830899.555009133,
+            "Elapsed_time": 0.00510797,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 7924069.6627151435,
+            "Elapsed_time": 0.031549445,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 7599353.22208701,
+            "Elapsed_time": 0.131590146,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 7693727.658520853,
+            "Elapsed_time": 0.519904028,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 7526437.465094152,
+            "Elapsed_time": 3.321624622,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7242618.712263005,
+            "Elapsed_time": 13.807160638,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7838487.284420722,
+            "Elapsed_time": 51.03025437,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "4": {
-        "10": 6594509.543244485,
-        "20": 4566806.441389149,
-        "50": 4267545.102702655,
-        "100": 4387510.162570414,
-        "200": 5510435.823854659,
-        "500": 6469004.105416571,
-        "1000": 6653501.327257445,
-        "2000": 6960633.536315293
+        "10": {
+            "Interactions/s": 6472734.8987858435,
+            "Elapsed_time": 0.001544942,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 8058569.684466704,
+            "Elapsed_time": 0.00496366,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 7422698.606400212,
+            "Elapsed_time": 0.033680473,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 5705671.5847615795,
+            "Elapsed_time": 0.175264206,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 6796233.713492786,
+            "Elapsed_time": 0.588561278,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 7301652.705666225,
+            "Elapsed_time": 3.423882374,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7607732.802956448,
+            "Elapsed_time": 13.144520528,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7790039.249288767,
+            "Elapsed_time": 51.347623189,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "5": {
-        "10": 5448142.40136683,
-        "20": 4405319.334990614,
-        "50": 4858679.949131564,
-        "100": 5231492.222994449,
-        "200": 6190403.8983499035,
-        "500": 6236181.776436091,
-        "1000": 6559397.239870225,
-        "2000": 7015947.758736193
+        "10": {
+            "Interactions/s": 6170108.661783642,
+            "Elapsed_time": 0.001620717,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 7444383.938146102,
+            "Elapsed_time": 0.005373178,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 5293406.424971565,
+            "Elapsed_time": 0.047228567,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 4644402.8084053565,
+            "Elapsed_time": 0.215312935,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 7033617.984263452,
+            "Elapsed_time": 0.568697363,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 7160194.4448982095,
+            "Elapsed_time": 3.491525292,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7338638.618754645,
+            "Elapsed_time": 13.626505568,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 6975805.298378678,
+            "Elapsed_time": 57.341049942,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "6": {
-        "10": 5376306.509685685,
-        "20": 3966840.3878300507,
-        "50": 4476213.304025714,
-        "100": 4560185.187296382,
-        "200": 4599262.456293467,
-        "500": 5740030.430385596,
-        "1000": 6708018.820207037,
-        "2000": 6823215.791982579
+        "10": {
+            "Interactions/s": 7606026.102360378,
+            "Elapsed_time": 0.001314747,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 5287096.616007028,
+            "Elapsed_time": 0.007565589,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 5112506.95275383,
+            "Elapsed_time": 0.048899689,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 7166564.856057466,
+            "Elapsed_time": 0.139536866,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 7294078.273195242,
+            "Elapsed_time": 0.548390057,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 7947069.031171212,
+            "Elapsed_time": 3.145813872,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7997183.968882955,
+            "Elapsed_time": 12.504401598,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7094052.633976299,
+            "Elapsed_time": 56.385259687,
+            "Total_number_of_calculations": 400000000.0
+        }
     },
     "7": {
-        "10": 5171438.352834827,
-        "20": 4380873.108010427,
-        "50": 4323483.446523283,
-        "100": 4626880.363022813,
-        "200": 4489432.710434122,
-        "500": 5764177.499270839,
-        "1000": 6477061.7032187,
-        "2000": 6813755.130764044
+        "10": {
+            "Interactions/s": 6179644.744582923,
+            "Elapsed_time": 0.001618216,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 6262219.15512644,
+            "Elapsed_time": 0.006387512,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 4607240.573424533,
+            "Elapsed_time": 0.054262415,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 3876745.047486308,
+            "Elapsed_time": 0.257948353,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 6127853.965641459,
+            "Elapsed_time": 0.65275707,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 7020035.2479901025,
+            "Elapsed_time": 3.56123568,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7409654.700242797,
+            "Elapsed_time": 13.495905551,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7608757.6336304955,
+            "Elapsed_time": 52.571000321,
+            "Total_number_of_calculations": 400000000.0
+        }
+    },
+    "8": {
+        "10": {
+            "Interactions/s": 5976307.526442173,
+            "Elapsed_time": 0.001673274,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 5301869.213755329,
+            "Elapsed_time": 0.007544509,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 6373940.475809556,
+            "Elapsed_time": 0.039222205,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 6910367.072963311,
+            "Elapsed_time": 0.144710113,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 6280822.104028142,
+            "Elapsed_time": 0.636859305,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 6682202.691701153,
+            "Elapsed_time": 3.741281304,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 7061471.870301941,
+            "Elapsed_time": 14.161353587,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 7512806.424821798,
+            "Elapsed_time": 53.242420659,
+            "Total_number_of_calculations": 400000000.0
+        }
     }
 }
