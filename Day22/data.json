@@ -39,11 +39,138 @@
             "Interactions/s": 17620160.103998087,
             "Elapsed_time": 22.701269321,
             "Total_number_of_calculations": 400000000.0
+        }
+    }
+}
+{
+    "4": {
+        "10": {
+            "Interactions/s": 409131.2698906838,
+            "Elapsed_time": 0.024442033,
+            "Total_number_of_calculations": 10000.0
         },
-        "4000": {
-            "Interactions/s": 20941312.70144322,
-            "Elapsed_time": 76.403997343,
-            "Total_number_of_calculations": 1600000000.0
+        "20": {
+            "Interactions/s": 691644.1621506482,
+            "Elapsed_time": 0.057833207,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 1618681.4381577966,
+            "Elapsed_time": 0.154446696,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 3237007.1122969976,
+            "Elapsed_time": 0.308927341,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 6000053.610479009,
+            "Elapsed_time": 0.66666071,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 10811152.349723205,
+            "Elapsed_time": 2.312426945,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 11986994.798217954,
+            "Elapsed_time": 8.342374522,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 14677189.447454933,
+            "Elapsed_time": 27.253174147,
+            "Total_number_of_calculations": 400000000.0
+        }
+    }
+}
+{
+    "2": {
+        "10": {
+            "Interactions/s": 307472.6775935282,
+            "Elapsed_time": 0.032523215,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 724956.9511500446,
+            "Elapsed_time": 0.05517569,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 1601576.2790614183,
+            "Elapsed_time": 0.156096218,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 2969222.1800932484,
+            "Elapsed_time": 0.336788539,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 5122029.477563916,
+            "Elapsed_time": 0.780940449,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 8129067.041744508,
+            "Elapsed_time": 3.075383666,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 9454537.653554866,
+            "Elapsed_time": 10.576931804,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 9123915.86203701,
+            "Elapsed_time": 43.840825151,
+            "Total_number_of_calculations": 400000000.0
+        }
+    }
+}
+{
+    "1": {
+        "10": {
+            "Interactions/s": 325451.9502415212,
+            "Elapsed_time": 0.030726502,
+            "Total_number_of_calculations": 10000.0
+        },
+        "20": {
+            "Interactions/s": 622955.6736201913,
+            "Elapsed_time": 0.064210026,
+            "Total_number_of_calculations": 40000.0
+        },
+        "50": {
+            "Interactions/s": 1315666.00881612,
+            "Elapsed_time": 0.19001783,
+            "Total_number_of_calculations": 250000.0
+        },
+        "100": {
+            "Interactions/s": 2330301.2471070853,
+            "Elapsed_time": 0.429129067,
+            "Total_number_of_calculations": 1000000.0
+        },
+        "200": {
+            "Interactions/s": 2710144.9677072577,
+            "Elapsed_time": 1.475935807,
+            "Total_number_of_calculations": 4000000.0
+        },
+        "500": {
+            "Interactions/s": 5478560.756300639,
+            "Elapsed_time": 4.563242266,
+            "Total_number_of_calculations": 25000000.0
+        },
+        "1000": {
+            "Interactions/s": 5666010.132342001,
+            "Elapsed_time": 17.649103631,
+            "Total_number_of_calculations": 100000000.0
+        },
+        "2000": {
+            "Interactions/s": 5747181.961413036,
+            "Elapsed_time": 69.599327581,
+            "Total_number_of_calculations": 400000000.0
         }
     }
 }

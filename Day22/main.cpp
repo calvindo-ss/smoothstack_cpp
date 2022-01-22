@@ -6,7 +6,6 @@
 #include <chrono>
 #include <thread>
 #include <queue>
-#include <mutex>
 
 #include "json.hpp"
 
@@ -23,7 +22,6 @@ double initial_mass = 1e32; // have to pump mass up to show any change in positi
 double k = 100; // k needs to be 1000+ to show any decent change in position if mass is low
 
 nlohmann::ordered_json j;
-std::mutex mutex;
 
 struct R{
     double x;
@@ -237,22 +235,26 @@ public:
             body[i] = Body(i, initial_mass, R(N * i, N* i * 2), V(), F(), A(), N);   // x = N*i, y = N*i*2 
         }                
         
-        std::vector<std::thread> threads;                                                           // I need to change this later
-
         // loop through timestep(k)
         for(int t_step = 0; t_step < k; t_step++){
+            std::vector<std::thread> threads;
 
             // loop through bodies to update forceVector
             // this updates forceVector on all bodies before position is updated, 
             // preventing inconsistent data between bodies
             // no need for mutex to lock data
             for(int bod = 0; bod < N; bod++){
+                if(threads.size() == numThreads){       // if number of threads hits max threads,
+                    threads.front().join();             // join first thread
+                    threads.erase(threads.begin());     // delete first element in threads vec
+                }   
+
                 std::thread t(&Simulation::calc_forceVector, this, body, bod, N);
                 threads.push_back(std::move(t));
             }
 
             for(auto& t:threads){
-            t.join();
+                t.join();
             }
             threads.clear();
             
@@ -288,10 +290,11 @@ public:
 int main(void){
     //int numBodies[] = {10, 11, 12, 13, 14, 15, 16, 17}; // use for testing custom number of bodies
     //int numBodies[] = {1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007}; // use for testing custom number of bodies
-    int numBodies[] = {10, 20, 50, 100, 200, 500, 1000, 2000, 4000};
+    int numBodies[] = {10, 20, 50, 100, 200, 500, 1000, 2000};
     int numThreads = 8;
 
     Simulation s(initial_mass, k, numThreads);
+
     for(int i = 0; i < sizeof(numBodies)/sizeof(numBodies[0]); i++){
         s.run(numBodies[i]);
     }

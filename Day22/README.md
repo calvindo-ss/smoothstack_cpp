@@ -1,10 +1,10 @@
 # Assignment
 
-## THIS ASSIGNMENT IS NOT COMPLETED YET
-
 ## Analysis
 
-Parallelizing the calculation of forceVector of each body significanly speeds up the N-body simulation.
+Parallelizing the calculation of forceVector of each body significanly speeds up the N-body simulation. Lower number of bodies does not take full advantage of extra threads, but rather hurts performance. Extra threads increase performance when there are are 1000+ bodies. However, 4 vs 8 threads has fairly similar performance with 8 threads with only slightly faster performance. After 4 threads there is dimishing returns with 1000 and 2000 bodies. With 2000 bodies, there is diminishing returns when increasing the number of threads from 4 to 8.
+
+When comparing 1 vs 4 threads, 4 threads has approximately twice the performance 1 thread at low body counts.
 
 ## Multi-threaded N-body problem
 
