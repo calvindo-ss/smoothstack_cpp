@@ -34,16 +34,16 @@ RUN useradd -ms /bin/bash calvin
 USER calvin
 WORKDIR /home/calvin
 
-RUN cd /tmp && \
-    git clone https://github.com/protocolbuffers/protobuf.git && \
-    cd protobuf && \
-    git submodule update --init --recursive && \
-    ./autogen.sh && \
-    ./configure && \
-    make -j${NUM_JOBS} && \
-    make check -j${NUM_JOBS} && \
-    make install -j${NUM_JOBS} && \
-    ldconfig
+#RUN cd /tmp && \
+#    git clone https://github.com/protocolbuffers/protobuf.git && \
+#    cd protobuf && \
+#    git submodule update --init --recursive && \
+#    ./autogen.sh && \
+#    ./configure && \
+#    make -j${NUM_JOBS} && \
+#    make check -j${NUM_JOBS} && \
+#    make install -j${NUM_JOBS} && \
+#    ldconfig
 
 # installs zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
