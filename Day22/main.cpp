@@ -29,6 +29,10 @@ struct R{
 
     R(): x(0), y(0){}
     R(double x_input, double y_input): x(x_input), y(y_input){}
+
+    bool operator==(const R& other){
+        return x == other.x && y == other.y;
+    }
 };
 
 struct V{
@@ -68,6 +72,13 @@ struct F{
         temp.y *= num;
 
         return temp;
+    }
+
+    F operator+=(const F& other){
+        x += other.x;
+        y += other.y;
+
+        return *this;
     }
 
     ~F(){}
@@ -156,7 +167,7 @@ private:
             
             if(body[bod].forceVector[other_bodies].x == 0 && body[bod].forceVector[other_bodies].y == 0){ 
                 body[bod].forceVector[other_bodies] = [](double mass1, double mass2, R r1, R r2){ // updates forceVector
-                if(r1.x == r2.x && r1.y == r2.y){
+                if(r1 == r2){
                     return F();
                 }
 
@@ -192,8 +203,7 @@ private:
                 //Update the force exerted on a body by number of bodies(N)
                 [&]{
                     for(int i = 0; i < N; i++){
-                        b.totalForce.x += b.forceVector[i].x;
-                        b.totalForce.y += b.forceVector[i].y;
+                        b.totalForce += b.forceVector[i];
                     }
                 }();
 
@@ -225,7 +235,7 @@ public:
         write = flag;
     }
 
-    void run(int N){ // N is number of bodies, M is number of cores
+    void run(int& N){ // N is number of bodies, M is number of cores
         std::cout << "Simulating " << N << " n-bodies" << std::endl;
         
         std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
@@ -280,10 +290,9 @@ public:
             j[std::to_string(numThreads)][std::to_string(N)]["Interactions/s"] = k * N * N / time;
             j[std::to_string(numThreads)][std::to_string(N)]["Elapsed_time"] = time;
             j[std::to_string(numThreads)][std::to_string(N)]["Total_number_of_calculations"] = k * N * N;
-            //std::cout << "Elapsed time to calculate " << N << " n-bodies: " << time << std::endl;
         }
 
-        delete [] body;
+        delete[] body;
     }
 };
 
